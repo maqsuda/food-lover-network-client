@@ -11,10 +11,10 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import food1 from "../../../public/food1.jpg";
-import food2 from "../../../public/food2.jpg";
-import food3 from "../../../public/food3.jpg";
-import food4 from "../../../public/food4.jpg";
+import food1 from "../../assets/food1.jpg";
+import food2 from "../../assets/food2.jpg";
+import food3 from "../../assets/food3.jpg";
+import food4 from "../../assets/food4.jpg";
 
 const HeroSection = () => {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../../../public/review.png";
+import logo from "../../assets/review.png";
 import { NavLink } from "react-router";
 const Navbar = () => {
   const links = (
