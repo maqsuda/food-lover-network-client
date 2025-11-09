@@ -1,7 +1,18 @@
-import React from "react";
+import React, { use, useState } from "react";
 import logo from "../../assets/review.png";
-import { NavLink } from "react-router";
+import { Link, NavLink } from "react-router";
+import { AuthContext } from "../../contexts/AuthContext";
 const Navbar = () => {
+  const { user, logOut } = use(AuthContext);
+  const [open, setOpen] = useState(false);
+  const toggleDropdown = () => setOpen((dropdown) => !dropdown);
+
+  const handleLogout = () => {
+    logOut()
+      .then(() => {})
+      .catch(() => {});
+  };
+
   const links = (
     <>
       <li>
@@ -23,7 +34,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar shadow-sm mx-auto bg-white z-50 backdrop-blur-sm fixed">
+    <div className="navbar shadow-sm mx-auto bg-white z-50 backdrop-blur-sm ">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -61,6 +72,55 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1 font-bold text-[#CE2600]">
           {links}
         </ul>
+      </div>
+      <div className="navbar-end">
+        {/* {user && user.email} */}
+
+        <div>
+          {user ? (
+            <div className="flex gap-3">
+              {/* Drop Down */}
+              <div className="dropdown">
+                <button onClick={toggleDropdown} className="dropdown-button">
+                  <img
+                    src={user.photoURL}
+                    className="size-12 rounded-full"
+                  ></img>
+                </button>
+
+                {open && (
+                  <ul className="menu menu-md dropdown-content bg-[#F0F0F1]">
+                    <li className="pt-5"> {user && user.email}</li>
+                    <li className="flex pt-5">
+                      <button
+                        onClick={handleLogout}
+                        className="btn px-10 border-none text-start items-start "
+                      >
+                        LogOut
+                      </button>
+                    </li>
+                  </ul>
+                )}
+              </div>
+
+              {/* <button
+                onClick={handleLogout}
+                className="btn px-10 bg-[#388148] text-white"
+              >
+                LogOut
+              </button> */}
+            </div>
+          ) : (
+            <div>
+              <Link to="/login" className="btn  text-white bg-[#CE2600]">
+                LogIn
+              </Link>
+              {/* <Link to="/register" className="btn  text-white bg-[#CE2600]">
+                Register
+              </Link> */}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
