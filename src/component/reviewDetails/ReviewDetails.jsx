@@ -6,7 +6,7 @@ const ReviewDetails = () => {
   const reviewDetails = useLoaderData();
   const {
     _id,
-    Photo,
+    foodPhoto,
     foodName,
     restaurantName,
     reviewerName,
@@ -19,7 +19,7 @@ const ReviewDetails = () => {
   return (
     <div className="grid grid-cols-2">
       <div>
-        <img className="h-[600px] w-full" src={Photo}></img>
+        <img className="h-[600px] w-full" src={foodPhoto}></img>
       </div>
 
       <div className="">

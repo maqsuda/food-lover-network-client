@@ -12,6 +12,7 @@ import AddReviews from "../component/addReviews/AddReviews";
 import Loading from "../pages/Loading";
 import ErrorPage from "../pages/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
+import ReviewEdit from "../component/reviewEdit/ReviewEdit";
 
 export const router = createBrowserRouter([
   {
@@ -44,7 +45,11 @@ export const router = createBrowserRouter([
 
       {
         path: "/myReviews",
-        element: <MyReviews></MyReviews>,
+        element: (
+          <PrivateRoute>
+            <MyReviews></MyReviews>
+          </PrivateRoute>
+        ),
       },
 
       {
@@ -54,6 +59,16 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <ReviewDetails></ReviewDetails>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/review-edit/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/all-reviews/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <ReviewEdit></ReviewEdit>
           </PrivateRoute>
         ),
       },

@@ -5,7 +5,7 @@ import { Link } from "react-router";
 const Review = ({ review }) => {
   const {
     _id,
-    Photo,
+    foodPhoto,
     foodName,
     restaurantName,
     reviewerName,
@@ -24,7 +24,7 @@ const Review = ({ review }) => {
     <div className="card bg-base-100 w-96 shadow-sm">
       <figure className="px-5 pt-5">
         <img
-          src={review.Photo}
+          src={foodPhoto}
           alt="Shoes"
           className="rounded-xl w-full h-[300px]"
         />
