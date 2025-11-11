@@ -21,13 +21,8 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/" className="mr-5 ">
+        <NavLink to="/allreviews" className="mr-5 ">
           All Reviews
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/" className="mr-5 ">
-          My Reviews
         </NavLink>
       </li>
     </>
@@ -89,12 +84,31 @@ const Navbar = () => {
                 </button>
 
                 {open && (
-                  <ul className="menu menu-md dropdown-content bg-[#F0F0F1]">
-                    <li className="pt-5"> {user && user.email}</li>
-                    <li className="flex pt-5">
+                  <ul className="menu dropdown-content dropdown-right bg-[#F0F0F1]">
+                    {/* <li className="pt-5"> {user && user.email}</li> */}
+
+                    <li className="">
+                      <NavLink
+                        to="/addReviews"
+                        className="w-[120px] hover:font-bold hover:text-[#CE2600] hover:bg-[#FFCD00]"
+                      >
+                        Add Reviews
+                      </NavLink>
+                    </li>
+
+                    <li>
+                      <NavLink
+                        to="/myReviews"
+                        className="w-[120px] hover:font-bold hover:text-[#CE2600] hover:bg-[#FFCD00] "
+                      >
+                        My Reviews
+                      </NavLink>
+                    </li>
+
+                    <li>
                       <button
                         onClick={handleLogout}
-                        className="btn px-10 border-none text-start items-start "
+                        className="px-3 border-none text-start items-start hover:font-bold hover:text-[#CE2600] hover:bg-[#FFCD00] "
                       >
                         LogOut
                       </button>

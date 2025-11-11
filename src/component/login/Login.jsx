@@ -4,35 +4,87 @@ import { LuEyeClosed } from "react-icons/lu";
 
 import "./Login.css";
 
-import { FaFacebook, FaGoogle, FaInstagram, FaTwitter } from "react-icons/fa6";
+import {
+  FaFacebook,
+  FaGoogle,
+  FaInstagram,
+  FaTwitter,
+  FaXTwitter,
+} from "react-icons/fa6";
 import { Link, useNavigate } from "react-router";
 import { AuthContext } from "../../contexts/AuthContext";
+import Swal from "sweetalert2";
 // import { Link } from "react-router-dom";
 
 const Login = () => {
-  const { signIn, emailReset } = use(AuthContext);
+  const { signIn, emailReset, signInWithGoogle } = use(AuthContext);
   const emailRef = useRef();
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState("");
+  // const [error, setError] = useState("");
 
   const navigate = useNavigate();
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        //  console.log(result.user);
+        const newUser = {
+          name: result.user.displayName,
+          email: result.user.email,
+          image: result.user.photoURL,
+          // password: result.user.password,
+          // conformPassword: result.user.conformPassword,
+        };
+
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then(() => {
+            // console.log("data after user save", data);
+          });
+
+        navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "User Already Exists.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // setError(error.message);
+      });
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
 
-    setError("");
+    // setError("");
 
     signIn(email, password)
       .then(() => {
-        //   console.log(result.user);
         event.target.reset();
         navigate(`${location.state ? location.state : "/"}`);
       })
       .catch((error) => {
         console.log(error);
-        setError("Email or Password do not matched");
+        // setError("Email or Password do not matched");
+
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "Email or Password do not matched",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       });
   };
 
@@ -43,10 +95,18 @@ const Login = () => {
 
   const handleForgetPassword = () => {
     const email = emailRef.current.value;
-    console.log("Forget Password", email);
+    // console.log("Forget Password", email);
     emailReset(email)
       .then(() => {
-        alert("please check your email");
+        // alert("please check your email");
+
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Please check your email",
+          showConfirmButton: false,
+          timer: 1500,
+        });
       })
       .catch(() => {
         //    console.log(error.message);
@@ -128,15 +188,18 @@ const Login = () => {
                 </div>
 
                 <div className="flex gap-4 items-center">
-                  <FaGoogle className="text-2xl hover:cursor-pointer hover:text-[#CE2600] hover:border-white"></FaGoogle>
-                  <FaTwitter className="text-4xl"></FaTwitter>
+                  <FaGoogle
+                    onClick={handleGoogleSignIn}
+                    className="text-2xl hover:cursor-pointer hover:text-[#CE2600] hover:border-white"
+                  ></FaGoogle>
+                  <FaXTwitter className="text-3xl"></FaXTwitter>
                   <FaFacebook className="text-3xl"></FaFacebook>
                 </div>
               </div>
             </fieldset>
-            {error && (
+            {/* {error && (
               <p className="text-[#CE2600] font-bold text-center">{error}</p>
-            )}
+            )} */}
           </form>
         </div>
       </div>

@@ -18,13 +18,13 @@ const Footer = () => {
         </nav>
 
         <nav className=" grid grid-flow-row md:grid-flow-col gap-4 justify-items-end col-span-1">
-          <span className=" text-white font-bold font-2xl p-1">
+          <span className=" text-white font-bold font-3xl p-1">
             <FaInstagramSquare />
           </span>
-          <span className=" text-white font-bold font-2xl p-1">
+          <span className=" text-white font-bold font-3xl p-1">
             <FaFacebook />
           </span>
-          <span className="text-white font-bold font-2xl p-1">
+          <span className="text-white font-bold font-3xl p-1">
             <FaPinterestP />
           </span>
         </nav>

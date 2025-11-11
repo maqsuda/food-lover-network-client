@@ -1,17 +1,24 @@
 import React, { use, useState } from "react";
-import { FaEye, FaFileImport, FaTwitter } from "react-icons/fa";
-import { FaEnvelope, FaGoogle, FaKey, FaLock, FaUser } from "react-icons/fa6";
+import { FaEye, FaFacebook, FaFileImport, FaTwitter } from "react-icons/fa";
+import {
+  FaEnvelope,
+  FaGoogle,
+  FaKey,
+  FaLock,
+  FaUser,
+  FaXTwitter,
+} from "react-icons/fa6";
 import "../login/Login.css";
 
-import { Link } from "react-router";
+import { Link, Navigate } from "react-router";
 import { LuEyeClosed } from "react-icons/lu";
 import { AuthContext } from "../../contexts/AuthContext";
+import { toast, ToastContainer } from "react-toastify";
+import Swal from "sweetalert2";
 
 const Registration = () => {
-  const { createUser, setUser } = use(AuthContext);
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
-
+  const { createUser, setUser, updateUser, signInWithGoogle } =
+    use(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const [showConformPassword, setShowConformPassword] = useState(false);
 
@@ -22,20 +29,84 @@ const Registration = () => {
     const photo = event.target.photo.value;
     const password = event.target.password.value;
     const conformPassword = event.target.conformPassword.value;
-    console.log(name, email, photo, password, conformPassword);
-    setError("");
-    setSuccess(false);
 
-    createUser(email, password)
-      .then((result) => {
-        setUser(result.user);
-        setSuccess(true);
-        event.target.reset();
-      })
-      .catch((error) => {
-        console.log(error);
-        setError(error.message);
+    const newUser = { name, email, photo, password, conformPassword };
+
+    const lengthPattern = /^.{6,}$/;
+    const casePattern = /^(?=.*[a-z])(?=.*[A-Z]).+$/;
+    const specialCaracter = /^(?=.*[!@#$%^&*(),.?":{}|<>]).+$/;
+
+    if (!lengthPattern.test(password)) {
+      toast("Password must be at least 6 characters larger.");
+
+      return;
+    } else if (!casePattern.test(password)) {
+      toast("Password must have one uppercase and one lowercase character.");
+
+      return;
+    } else if (!specialCaracter.test(password)) {
+      toast(
+        "Password must include at least one special character.Ex- ! @ # $ % ^ & *"
+      );
+
+      return;
+    }
+
+    if (password === conformPassword) {
+      createUser(email, password)
+        .then((result) => {
+          const profile = {
+            displayName: name,
+            photoURL: photo,
+          };
+          updateUser(profile)
+            .then(() => {
+              // console.log("UPDATE", result.user);
+            })
+            .catch(() => {
+              // console.log(error);
+            });
+
+          setUser(result.user);
+
+          fetch("http://localhost:3000/users", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(newUser),
+          })
+            .then((res) => res.json())
+            .then(() => {
+              // console.log("data after user save", data);
+            });
+
+          // setSuccess(true);
+          // toast("Account Created Successfully.!");
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Account Created Successfully.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+
+          event.target.reset();
+        })
+        .catch((error) => {
+          // console.log(error);
+          toast(error.message);
+        });
+    } else {
+      // toast("Password and Conform Password not same.Please try again!!!");
+      Swal.fire({
+        position: "top-end",
+        icon: "error",
+        title: "Password and Conform Password not same.Please try again!!!",
+        showConfirmButton: false,
+        timer: 1500,
       });
+    }
   };
 
   const handleShowPassword = (event) => {
@@ -46,6 +117,44 @@ const Registration = () => {
   const handleShowConformPassword = (event) => {
     event.preventDefault();
     setShowConformPassword(!showConformPassword);
+  };
+
+  const handleGoogleSignIn = () => {
+    signInWithGoogle()
+      .then((result) => {
+        //  console.log(result.user);
+        const newUser = {
+          name: result.user.displayName,
+          email: result.user.email,
+          image: result.user.photoURL,
+          // password: result.user.password,
+          // conformPassword: result.user.conformPassword,
+        };
+
+        fetch("http://localhost:3000/users", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then(() => {
+            // console.log("data after user save", data);
+          });
+
+        Navigate(`${location.state ? location.state : "/"}`);
+      })
+      .catch(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "error",
+          title: "User Already Exists.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        // setError(error.message);
+      });
   };
 
   return (
@@ -167,17 +276,24 @@ const Registration = () => {
                     </Link>
                   </p>
                 </div>
+                <div className="flex gap-4 items-center">
+                  <FaGoogle
+                    onClick={handleGoogleSignIn}
+                    className="text-2xl hover:cursor-pointer hover:text-[#CE2600] hover:border-white"
+                  ></FaGoogle>
+                  <FaXTwitter className="text-3xl"></FaXTwitter>
+                  <FaFacebook className="text-3xl"></FaFacebook>
+                </div>
               </div>
             </fieldset>
-            {error && (
-              <p className="text-[#CE2600] font-bold text-center">{error}</p>
-            )}
-            {success && (
+
+            {/* {success && (
               <p className="text-green-700 font-bold text-center">
                 Account Created Successfully.
               </p>
-            )}
+            )} */}
           </form>
+          <ToastContainer />
         </div>
       </div>
     </div>
