@@ -51,7 +51,7 @@ const MyReviews = () => {
   };
 
   return (
-    <div className="overflow-x-auto mb-10">
+    <div className="overflow-x-auto mb-10 min-h-screen flex-1">
       <h2 className="text-5xl text-center py-10">My Review</h2>
       <table className="table pb-10">
         {/* head */}

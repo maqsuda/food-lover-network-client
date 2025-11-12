@@ -1,5 +1,5 @@
 import React from "react";
-import { FaRegStar, FaStar } from "react-icons/fa";
+import { FaHeart, FaRegStar, FaStar } from "react-icons/fa";
 import { Link } from "react-router";
 
 const Review = ({ review }) => {
@@ -30,14 +30,20 @@ const Review = ({ review }) => {
         />
       </figure>
       <div className="card-body ">
-        <h2 className="card-title underline">Food Name : {foodName}</h2>
+        <div className="flex justify-between items-center">
+          <h2 className="card-title underline">Food Name : {foodName}</h2>
+          <span className="btn bg-white text-[#CE2600] border-none">
+            <FaHeart />
+          </span>
+          {/* <button className="btn text-white bg-[#CE2600]">Favorite</button> */}
+        </div>
+
         <div className="">
           <p>
-            Restaurant Name :{" "}
-            <span className="font-bold">{restaurantName}</span>
+            Restaurant Name :<span className="font-bold">{restaurantName}</span>
           </p>
           <p>
-            Restaurant Location :{" "}
+            Restaurant Location :
             <span className="font-bold">{restaurantLocation}</span>
           </p>
         </div>

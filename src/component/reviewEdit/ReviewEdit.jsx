@@ -1,7 +1,11 @@
 import React from "react";
 import { useLoaderData } from "react-router";
+import Swal from "sweetalert2";
+// import useAuth from "../../hooks/useAuth";
 
 const ReviewEdit = () => {
+  // const { user } = useAuth();
+
   const reviewEdit = useLoaderData();
 
   const {
@@ -15,8 +19,47 @@ const ReviewEdit = () => {
     reviewDate,
   } = reviewEdit;
 
-  const handleUpdate = (_id) => {
-    console.log(_id);
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    const reviewDate = e.target.reviewDate.value;
+    const foodName = e.target.foodName.value;
+    const foodPhoto = e.target.foodPhoto.value;
+    const restaurantName = e.target.restaurantName.value;
+    const restaurantLocation = e.target.restaurantLocation.value;
+    const rating = e.target.rating.value;
+    const comments = e.target.comments.value;
+
+    const editReviews = {
+      foodName,
+      foodPhoto,
+      restaurantName,
+      restaurantLocation,
+      rating,
+      reviewDate,
+      comments,
+    };
+    console.log(editReviews);
+
+    fetch(`http://localhost:3000/all-reviews/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(editReviews),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("after update", data);
+        if (data.modifiedCount) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Your reviews has been updated.",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+      });
   };
 
   return (

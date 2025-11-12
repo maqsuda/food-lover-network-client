@@ -38,14 +38,14 @@ const AddReviews = () => {
       .then((data) => {
         console.log(data.data);
 
-        if (data.data.insertedId) {
-          Swal.fire({
+        if (data.data.insertedId) {  Swal.fire({
             position: "top-end",
             icon: "success",
             title: "Your reviews has been created.",
             showConfirmButton: false,
             timer: 1500,
           });
+        
         }
       })
       .catch((error) => {

@@ -1,6 +1,8 @@
 import React from "react";
 import HeroSection from "../../pages/heroSection/HeroSection";
 import LatestReview from "../latestReview/LatestReview";
+import PopularRestaurents from "../popularRestaurents/PopularRestaurents";
+import TopReviewer from "../topReviewer/TopReviewer";
 
 const featuredReviewsPromise = fetch(
   "http://localhost:3000/latest-review"
@@ -13,6 +15,8 @@ const Home = () => {
       <LatestReview
         featuredReviewsPromise={featuredReviewsPromise}
       ></LatestReview>
+      <PopularRestaurents></PopularRestaurents>
+      <TopReviewer></TopReviewer>
     </div>
   );
 };

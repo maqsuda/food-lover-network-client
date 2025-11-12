@@ -4,10 +4,9 @@ import Review from "../review/Review";
 
 const AllReviews = () => {
   const allData = useLoaderData();
-  
+
   return (
     <div>
-      <h2></h2>{" "}
       <h2 className="text-5xl font-bold text-[#CE2600] py-10 text-center">
         All Reviews
       </h2>

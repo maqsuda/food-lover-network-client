@@ -7,7 +7,7 @@ const LatestReview = ({ featuredReviewsPromise }) => {
   //   console.log(featureData);
   return (
     <div>
-      <h2 className="text-5xl font-bold text-[#CE2600] py-10 text-center">
+      <h2 className="text-5xl font-bold text-[#CE2600] pt-10 pb-5 text-center">
         Featured Reviews{" "}
       </h2>
 
