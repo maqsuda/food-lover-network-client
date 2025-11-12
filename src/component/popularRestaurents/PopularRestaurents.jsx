@@ -10,17 +10,17 @@ import { CiClock2 } from "react-icons/ci";
 const PopularRestaurents = () => {
   return (
     <div>
-      <h2 className="text-5xl font-bold text-[#CE2600] pt-5 pb-10 text-center">
+      <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-[#CE2600] pt-5 pb-10 text-center">
         Popular Restaurents
       </h2>
 
       <div>
-        <div className="grid grid-cols-12 gap-5 py-10">
-          <div className="col-span-6 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 grid-flow-row-dense gap-5 lg:py-10">
+          <div className="lg:col-span-6 order-2 md:order-1">
             <img src={hotel1} alt="Shoes" className="rounded-xl" />
           </div>
 
-          <div className="col-span-6">
+          <div className="lg:col-span-6 order-1 md:order-2">
             <h2 className="text-3xl font-bold underline py-5">
               Cafe Social at InterContinental Dhaka
             </h2>
@@ -28,7 +28,7 @@ const PopularRestaurents = () => {
             <div>
               <p className="flex items-center gap-2">
                 4.9
-                <span className="text-green-600 flex items-center">
+                <span className="text-[#FFCD00] flex items-center">
                   <FaCircle />
                   <FaCircle />
                   <FaCircle />
@@ -43,7 +43,7 @@ const PopularRestaurents = () => {
               <p className="flex items-center gap-2">
                 <IoRestaurant />
                 Cafe, European -$$ - $$$ - <CiClock2 />{" "}
-                <span className="text-green-600 ">Open Now</span>
+                <span className="text-[#FFCD00] ">Open Now</span>
               </p>
             </div>
 
@@ -63,8 +63,8 @@ const PopularRestaurents = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-5 py-10">
-          <div className="col-span-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12  gap-5 lg:py-10 ">
+          <div className="lg:col-span-6">
             <h2 className="text-3xl font-bold underline py-5">
               The Garden Kitchen at Sheraton Dhaka
             </h2>
@@ -72,7 +72,7 @@ const PopularRestaurents = () => {
             <div>
               <p className="flex items-center gap-2">
                 4.9
-                <span className="text-green-600 flex items-center">
+                <span className="text-[#FFCD00] flex items-center">
                   <FaCircle />
                   <FaCircle />
                   <FaCircle />
@@ -87,7 +87,7 @@ const PopularRestaurents = () => {
               <p className="flex items-center gap-2">
                 <IoRestaurant />
                 Italian, Indian -$$ - $$$ - <CiClock2 />{" "}
-                <span className="text-green-600 ">Open Now</span>
+                <span className="text-[#FFCD00] ">Open Now</span>
               </p>
             </div>
 
@@ -99,23 +99,23 @@ const PopularRestaurents = () => {
             <div className="card-actions justify-end"></div>
           </div>
 
-          <div className="col-span-6 ">
+          <div className="lg:col-span-6 ">
             <img src={hotel2} alt="Shoes" className="rounded-xl" />
           </div>
         </div>
 
-        <div className="grid grid-cols-12 gap-5 py-10">
-          <div className="col-span-6 ">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 grid-flow-row-dense gap-5 py-10">
+          <div className="lg:col-span-6 order-2 md:order-1">
             <img src={hotel3} alt="Shoes" className="rounded-xl" />
           </div>
 
-          <div className="col-span-6">
+          <div className="lg:col-span-6 sm:order-1 md:order-2">
             <h2 className="text-3xl font-bold underline py-5">Bahar</h2>
 
             <div>
               <p className="flex items-center gap-2">
                 4.9
-                <span className="text-green-600 flex items-center">
+                <span className="text-[#FFCD00] flex items-center">
                   <FaCircle />
                   <FaCircle />
                   <FaCircle />
@@ -130,7 +130,7 @@ const PopularRestaurents = () => {
               <p className="flex items-center gap-2">
                 <IoRestaurant />
                 French, Chinese -$$ - $$$ - <CiClock2 />{" "}
-                <span className="text-green-600 ">Open Now</span>
+                <span className="text-[#FFCD00] ">Open Now</span>
               </p>
             </div>
 

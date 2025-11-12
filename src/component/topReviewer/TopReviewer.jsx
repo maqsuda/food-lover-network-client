@@ -6,12 +6,12 @@ import girl3 from "../../assets/girl3.jpg";
 
 const TopReviewer = () => {
   return (
-    <div className="bg-base-200 pb-10 mb-10 my-10">
-      <h2 className="text-5xl font-bold text-[#CE2600] pt-5 pb-10 text-center">
+    <div className="bg-base-200 pb-10 mb-10 lg:my-10">
+      <h2 className="text-2xl md:text-3xl lg:text-5xl font-bold text-[#CE2600] pt-5 pb-10 text-center">
         What our reviewers are saying
       </h2>
 
-      <div className="grid grid-cols-3 gap-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
         <div className="bg-white p-5 shadow-xl ml-10 mr-10">
           <div className="flex items-center text-yellow-500 py-5">
             <FaStar />
@@ -32,7 +32,7 @@ const TopReviewer = () => {
           </div>
         </div>
 
-        <div className="bg-white p-5 shadow-xl mr-10">
+        <div className="bg-white p-5 shadow-xl ml-10 mr-10">
           <div className="flex items-center text-yellow-500 py-5">
             <FaStar />
             <FaStar />
@@ -52,7 +52,7 @@ const TopReviewer = () => {
           </div>
         </div>
 
-        <div className="bg-white p-5 shadow-xl mr-10">
+        <div className="bg-white p-5 shadow-xl ml-10 mr-10">
           <div className="flex items-center text-yellow-500 py-5">
             <FaStar />
             <FaStar />

@@ -106,6 +106,15 @@ const Navbar = () => {
                     </li>
 
                     <li>
+                      <NavLink
+                        to="/my-favorite-review"
+                        className="w-[120px] hover:font-bold hover:text-[#CE2600] hover:bg-[#FFCD00] "
+                      >
+                        My Favorite
+                      </NavLink>
+                    </li>
+
+                    <li>
                       <button
                         onClick={handleLogout}
                         className="px-3 border-none text-start items-start hover:font-bold hover:text-[#CE2600] hover:bg-[#FFCD00] "

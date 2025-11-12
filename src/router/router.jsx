@@ -13,6 +13,7 @@ import Loading from "../pages/Loading";
 import ErrorPage from "../pages/ErrorPage";
 import PrivateRoute from "./PrivateRoute";
 import ReviewEdit from "../component/reviewEdit/ReviewEdit";
+import MyFavorite from "../component/myFavorite/MyFavorite";
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,15 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path: "/my-favorite-review",
+        element: (
+          <PrivateRoute>
+            <MyFavorite></MyFavorite>
+          </PrivateRoute>
+        ),
+      },
+
       {
         path: "/review-edit/:id",
         loader: ({ params }) =>

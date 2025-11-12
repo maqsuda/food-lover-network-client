@@ -38,14 +38,14 @@ const AddReviews = () => {
       .then((data) => {
         console.log(data.data);
 
-        if (data.data.insertedId) {  Swal.fire({
+        if (data.data.insertedId) {
+          Swal.fire({
             position: "top-end",
             icon: "success",
             title: "Your reviews has been created.",
             showConfirmButton: false,
             timer: 1500,
           });
-        
         }
       })
       .catch((error) => {
@@ -58,12 +58,12 @@ const AddReviews = () => {
   };
   return (
     <div className="bg-base-200 flex flex-col items-center">
-      <h1 className="text-5xl font-bold py-10 text-center text-black">
+      <h1 className="text-2xl md:text-3xl lg:text-5xl py-10 text-center text-black">
         Add Reviews
       </h1>
 
-      <div className=" bg-base-100 w-[500px]   shadow-2xl mb-10">
-        <form className="p-10" onSubmit={handleSubmit}>
+      <div className=" bg-base-100 lg:w-[500px]   shadow-2xl lg:mb-10 py-5">
+        <form className="px-10" onSubmit={handleSubmit}>
           <fieldset className="fieldset">
             {/* <label className="label gap-20">
               Email
@@ -75,73 +75,63 @@ const AddReviews = () => {
                 readOnly
               />
             </label> */}
-
-            <label className="label gap-12">
-              Food Name
-              <input
-                type="text"
-                name="foodName"
-                className="input"
-                placeholder="Enter Food Name"
-              />
-            </label>
-            <label className="label gap-11">
-              Food Image
-              <input
-                type="text"
-                name="foodPhoto"
-                className="input"
-                placeholder="Enter Food Image"
-              />
-            </label>
-
-            <label className="label gap-4">
-              Restaurant Name
-              <input
-                type="text"
-                name="restaurantName"
-                className="input"
-                placeholder="Enter Restaurant Name"
-              />
-            </label>
-
-            <label className="label">
-              Restaurant Location
-              <input
-                type="text"
-                name="restaurantLocation"
-                className="input"
-                placeholder="Enter Restaurant Location"
-              />
-            </label>
-            <label className="label gap-12">
-              Star Rating
-              <input
-                type="text"
-                name="rating"
-                className="input"
-                placeholder="Enter Star Rating"
-              />
-            </label>
-            <label className="label gap-10">
-              Current Date
-              <input
-                type="date"
-                name="reviewDate"
-                className="input"
-                placeholder="Todays Date"
-                defaultValue={new Date("YYYY-MM-DD")}
-              />
-            </label>
-            <label className="label gap-12">
-              Comments
-              <textarea
-                cols={55}
-                rows={10}
-                className="border pl-2"
-                name="comments"
-              ></textarea>
-            </label>
+            <label className="label lg:gap-12"></label>
+            Food Name
+            <input
+              type="text"
+              name="foodName"
+              className="input"
+              placeholder="Enter Food Name"
+            />
+            <label className="label lg:gap-11"></label>
+            Food Image
+            <input
+              type="text"
+              name="foodPhoto"
+              className="input"
+              placeholder="Enter Food Image"
+            />
+            <label className="label lg:gap-4"> </label>
+            Restaurant Name
+            <input
+              type="text"
+              name="restaurantName"
+              className="input"
+              placeholder="Enter Restaurant Name"
+            />
+            <label className="label"></label>
+            Restaurant Location
+            <input
+              type="text"
+              name="restaurantLocation"
+              className="input"
+              placeholder="Enter Restaurant Location"
+            />
+            <label className="label lg:gap-12"></label>
+            Star Rating
+            <input
+              type="text"
+              name="rating"
+              className="input"
+              placeholder="Enter Star Rating"
+            />
+            <label className="label lg:gap-10"> </label>
+            Current Date
+            <input
+              type="date"
+              name="reviewDate"
+              className="input"
+              placeholder="Todays Date"
+              defaultValue={new Date("YYYY-MM-DD")}
+            />
+            <label className="label lg:gap-12"> </label>
+            Comments
+            <textarea
+              cols={55}
+              rows={10}
+              className="border pl-2"
+              name="comments"
+            ></textarea>
             <button className="btn text-[#CE2600] font-bold hover:bg-[#FFCD00] mt-4">
               Add Review
             </button>
